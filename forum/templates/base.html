@@ -41,7 +41,12 @@
           <li><a href="time.html">时间轴</a> </li>
           <li><a href="gbook.html">留言</a> </li>
           <li><a href="info.html">内容页</a> </li>
-          <li><a href="{% url 'login_or_registered' %}">登录|注册</a> </li>
+            {% if request.user.is_authenticated %}
+                <li><a href="{% url 'login_or_registered' %}">注销</a> </li>
+            {% else %}
+                <li><a href="{% url 'login_or_registered' %}">登录|注册</a> </li>
+            {% endif %}
+
           <!--search begin-->
           <div id="search_bar" class="search_bar">
             <form  id="searchform" action="[!--news.url--]e/search/index.php" method="post" name="searchform">
