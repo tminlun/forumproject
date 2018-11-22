@@ -4,6 +4,10 @@ __data__ = '2018\11\21 0021 19:13$'
 import xadmin
 from xadmin import views
 
+
+
+
+
 class BaseSetting(object):
     # 开启主题功能
     enable_themes = True

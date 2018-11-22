@@ -38,11 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'operation.apps.OperationConfig',
-    'user.apps.UserConfig',
-    'userforum.apps.UserforumConfig',
     'xadmin',
     'crispy_forms',
+    'operation.apps.OperationConfig', #用户操作
+    'user.apps.UserConfig', #用户信息
+    'userforum.apps.UserforumConfig', #用户帖子
 
 ]
 AUTH_USER_MODEL = "user.UserProfile"  #重载python的user的数据表
@@ -62,8 +62,9 @@ ROOT_URLCONF = 'forum.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
-        ,
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -134,3 +135,6 @@ STATICFILES_DIRS = (
 #上传文件路径
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
+
+DEFAULT_CHARSET = 'GBK'
