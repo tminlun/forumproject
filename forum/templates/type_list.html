@@ -1,0 +1,45 @@
+{% extends 'list.html' %}
+
+
+{% block main %}
+<div class="container">
+  <h1 class="t_nav" style="margin-top: 100px;"><span></span><a href="/" class="n1">首页</a><a href="/" class="n2">{{ type_name.type_name }}</a></h1>
+  <!--blogsbox begin-->
+  <div class="blogsbox">
+      {% for forum in all_forum.object_list %}
+        <div class="blogs" data-scroll-reveal="enter bottom over 1s" >
+          <h3 class="blogtitle"><a href="{% url 'forum_datil' forum.id %}?from={{ request.get_full_path }}" target="_Self">{{ forum.title }}</a></h3>
+          <p class="blogtext">{{ forum.comment|safe|truncatechars:20 }}</p>
+          <div class="bloginfo">
+            <ul>
+              <li class="author"><a href="/">{{ forum.author.nice_name }}</a></li>
+              <li class="lmname"><a href="/">{{ forum.forum_type.type_name }}</a></li>
+              <li class="timer">{{ forum.add_time|date:"Y-m-s" }}</li>
+              <li class="view"><span>{{ forum.read_number }}</span></li>
+              <li class="like">9999</li>
+            </ul>
+          </div>
+    </div>
+      {% endfor %}
+
+    <div class="pagelist">
+
+        <a title="Total record">&nbsp;<b>总帖子:{{ forum_count }}篇</b> </a>&nbsp;&nbsp;&nbsp;
+     {% for page in all_forum.pages %}
+                {% if page %}
+                    {% ifequal page all_forum.number %}
+                        <b>{{ page }}</b>
+                    {% else %}
+                        <a href="?{{ page.querystring }}">{{ page }}</a>
+                    {% endifequal %}
+                {% endif %}
+     {% endfor %}
+
+     {% if all_forum.has_next %}
+                <a href="?{{ all_forum.next_page_number.querystring }}">下一页</a></div>&nbsp;
+                {% else %}
+                <a>到底了~</a></div>
+            {% endif %}
+     </div>
+  </div>
+{% endblock %}   

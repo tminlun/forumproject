@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'xadmin',
     'crispy_forms',
+    'pure_pagination', #分页第三方插件
     'operation.apps.OperationConfig', #用户操作
     'user.apps.UserConfig', #用户信息
     'userforum.apps.UserforumConfig', #用户帖子
@@ -72,6 +73,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                #设置MEDIA上传路径
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -135,6 +138,5 @@ STATICFILES_DIRS = (
 #上传文件路径
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
-
 
 

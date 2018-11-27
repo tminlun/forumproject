@@ -11,7 +11,7 @@ class LoginView(View):
         return render(request, 'login_or_registered.html',{
             'login_form': login_form,
         })
-    def post(self, request):
+    def post(self,request):
         login_form = LoginForm(request.POST)
         if login_form.is_valid():#是否规范
             username = request.POST.get('username')
